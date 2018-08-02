@@ -1,0 +1,16 @@
+# Platform specific
+.DS_Store
+.vs
+
+# Library files
+.*.dep
+*.a
+*.so
+*.o
+
+# Cmake stuff
+Makefile
+CMakeFiles/*
+cmake_install.cmake
+CMakeCache.txt
+install_manifest.txt
