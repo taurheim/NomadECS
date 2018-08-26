@@ -1,8 +1,6 @@
-cmake_minimum_required(VERSION 3.1)
-
+cmake_minimum_required(VERSION 3.5)
 project(nomad)
 
-add_library(nomad STATIC src/demo.cpp)
+set(CMAKE_CXX_STANDARD 14)
 
-install(TARGETS nomad DESTINATION "lib")
-install(FILES src/demo.h DESTINATION "../include")
+add_library(nomad src/component.cpp src/entity.h src/componentManager.h src/componentManager.cpp)
