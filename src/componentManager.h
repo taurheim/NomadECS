@@ -1,5 +1,5 @@
 #pragma once
-#include "nomad.h"
+#include "entity.h"
 #include <array>
 #include <map>
 

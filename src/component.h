@@ -39,6 +39,10 @@ namespace nomad {
       ComponentType * operator->() const {
         return component;
       }
+
+      void destroy() {
+        manager->destroyComponent(owner);
+      }
   };
 }
 
