@@ -29,9 +29,9 @@ namespace nomad {
       void registerEntity(Entity & entity);
       void unRegisterEntity(Entity &entity);
       ComponentMask getSignature();
-    private:
-      ComponentMask signature;
+    protected:
       std::vector<Entity> registeredEntities;
       World * parentWorld;
+      ComponentMask signature;
   };
 }

@@ -25,24 +25,5 @@ namespace nomad {
   static int GetComponentFamily() {
     return Component<typename std::remove_const<C>::type>::family();
   }
-
-  /*
-   * A handle is only valid for this update. Don't hold on to handles anywhere.
-   */
-  template<typename ComponentType>
-  struct ComponentHandle {
-      Entity owner;
-      ComponentType * component;
-      ComponentManager<ComponentType> * manager;
-
-      // handle->member is the same as handle.component->member
-      ComponentType * operator->() const {
-        return component;
-      }
-
-      void destroy() {
-        manager->destroyComponent(owner);
-      }
-  };
 }
 

@@ -1,5 +1,6 @@
+#include <iostream>
 #include "world.h"
-#include "component.h"
+#include "entityHandle.h"
 
 namespace nomad {
   World::World(nomad::EntityManager * entityManager) : entityManager(entityManager){
@@ -35,29 +36,6 @@ namespace nomad {
     systems.push_back(system);
   }
 
-  template<typename ComponentType>
-  void World::addComponent(nomad::Entity & entity, ComponentType && component) {
-    ComponentManager<ComponentType> * manager = getComponentManager<ComponentType>();
-    manager->addComponent(entity, component);
-
-    ComponentMask oldMask = entityMasks[entity];
-    entityMasks[entity].addComponent<ComponentType>();
-
-    updateEntityMask(entity, oldMask);
-  }
-
-  template<typename ComponentType>
-  void World::removeComponent(nomad::Entity & entity) {
-    ComponentManager<ComponentType> * manager = getComponentManager<ComponentType>();
-    ComponentHandle<ComponentType> component = manager->lookup(entity);
-    component.destroy();
-
-    ComponentMask oldMask = entityMasks[entity];
-    entityMasks[entity].removeComponent<ComponentType>();
-
-    updateEntityMask(entity, oldMask);
-  }
-
   void World::updateEntityMask(nomad::Entity & entity, nomad::ComponentMask oldMask) {
     ComponentMask newMask = entityMasks[entity];
 
@@ -70,10 +48,5 @@ namespace nomad {
         system->unRegisterEntity(entity);
       }
     }
-  }
-
-  template<typename ComponentType>
-  ComponentManager<ComponentType> * World::getComponentManager() {
-    return static_cast<ComponentManager<ComponentType> *>(GetComponentFamily<ComponentType>());
   }
 }

@@ -1,6 +1,8 @@
 #pragma once
+
 namespace nomad {
   class World;
+  template<typename ComponentType> struct ComponentHandle;
   struct Entity {
     int id;
 
@@ -8,12 +10,5 @@ namespace nomad {
     friend bool operator<(const Entity& l, const Entity& r) {
       return l.id < r.id;
     }
-  };
-
-  struct EntityHandle {
-    Entity entity;
-    World * world;
-
-    void destroy();
   };
 }
