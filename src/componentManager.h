@@ -18,6 +18,8 @@ namespace nomad {
   template<typename ComponentType>
   class ComponentManager {
     public:
+      typedef ComponentType LookupType;
+
       ComponentManager() {
         componentData.data = static_cast<std::array<ComponentType, 1024>*>(malloc(sizeof(ComponentType) * 1024));
       }
@@ -38,7 +40,7 @@ namespace nomad {
         componentData.size--;
       }
 
-      ComponentType * lookup(Entity entity) {
+      LookupType * lookup(Entity entity) {
         ComponentInstance instance = entityMap[entity];
         return &componentData.data->at(instance);
       }

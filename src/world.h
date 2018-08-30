@@ -18,6 +18,19 @@ namespace nomad {
       void addSystem(System * system);
       void destroyEntity(Entity entity);
 
+      /*
+       * This is only necessary for bridge component managers. Please see the following blog post:
+       * TODO blog post
+       */
+      template<typename ComponentType>
+      void addCustomComponentManager(ComponentManager<ComponentType> * manager) {
+        int family = GetComponentFamily<ComponentType>();
+        if (family >= componentManagers.size()) {
+          componentManagers.resize(family + 1);
+        }
+        componentManagers[family] = manager;
+      }
+
       template<typename ComponentType>
       void addComponent(Entity & entity, ComponentType && component) {
         ComponentManager<ComponentType> * manager = getComponentManager<ComponentType>();
@@ -58,6 +71,7 @@ namespace nomad {
         auto mgr = getComponentManager<ComponentType>();
         handle = ComponentHandle<ComponentType>(e, mgr->lookup(e), mgr);
       }
+
 
     private:
       EntityManager * entityManager;
