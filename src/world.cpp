@@ -14,6 +14,7 @@ namespace nomad {
   }
 
   void World::update(int dt) {
+    // TODO check to make sure that the world has called init
     for(auto & system : systems) {
       system->update(dt);
     }

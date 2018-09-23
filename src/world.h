@@ -6,13 +6,30 @@
 #include "componentMask.h"
 #include "entityManager.h"
 #include "componentHandle.h"
+/*
+ * The world is a way of linking all of the disparate parts of the ECS.
+ * Users of the engine/ECS primarily interact with the world and handles.
+ * Handles are exclusively built by the world.
+ *
+ * <LINK TO BLOG POST about the world>
+ * TODO write a blog post about multiple worlds
+ */
 
 namespace nomad {
   class EntityHandle;
   class World {
     public:
       World(EntityManager * entityManager);
+
+      /*
+       * Should be called before the first update, but after instantiation
+       */
       void init();
+
+      /*
+       * Update game logic. This is unrelated to a frame
+       * TODO link to gafferongames timesstep article
+       */
       void update(int dt);
       EntityHandle createEntity();
       void addSystem(System * system);
