@@ -3,6 +3,7 @@ Nomad ECS is an entity component system implemention. More information about thi
 
 ## Install
 This repository can be built by itself, but the easiest way to use it is alongside [Conan.io](https://conan.io/)
+
 The package is hosted on Bintray: https://bintray.com/taurheim/nomad/NomadECS:taurheim
 
 1. Follow the instructions here: https://docs.conan.io/en/latest/installation.html
