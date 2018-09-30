@@ -11,8 +11,10 @@
  * Users of the engine/ECS primarily interact with the world and handles.
  * Handles are exclusively built by the world.
  *
- * <LINK TO BLOG POST about the world>
- * TODO write a blog post about multiple worlds
+ * https://medium.com/@savas/nomad-game-engine-part-3-the-big-picture-743cec145685
+ * https://medium.com/@savas/nomad-game-engine-part-6-the-world-303d305f55cb
+ *
+ * TODO write blog post about multiple worlds
  */
 
 namespace nomad {
@@ -28,7 +30,7 @@ namespace nomad {
 
       /*
        * Update game logic. This is unrelated to a frame
-       * TODO link to gafferongames timesstep article
+       * https://gafferongames.com/post/fix_your_timestep/
        */
       void update(int dt);
       EntityHandle createEntity();
@@ -36,8 +38,8 @@ namespace nomad {
       void destroyEntity(Entity entity);
 
       /*
-       * This is only necessary for bridge component managers. Please see the following blog post:
-       * TODO blog post
+       * This is only necessary for bridge component managers.
+       * TODO write blog post on bridge component managers
        */
       template<typename ComponentType>
       void addCustomComponentManager(ComponentManager<ComponentType> * manager) {

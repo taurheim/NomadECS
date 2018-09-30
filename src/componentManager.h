@@ -4,7 +4,20 @@
 #include <map>
 
 /*
+ * This is a generic component manager definition. It uses AoS storage for simplicity. A more
+ * detailed description of design choices can be found here:
+ *
+ * https://medium.com/@savas/nomad-game-engine-part-3-the-big-picture-743cec145685
  * https://medium.com/@savas/nomad-game-engine-part-4-1-generic-component-managers-dbe376f10836
+ *
+ * What is LookupType?
+ * LookupType exists to allow for component managers to be extended for different storage solutions.
+ * Sometimes, the type that is used to instantiate a component is different than the type that gets
+ * interacted with during the game. For example, you might have a sprite component which uses a file
+ * path to instantiate but from then on holds on to an SDL reference. More detailed examples of the
+ * uses of LookupType are coming soon.
+ *
+ *
  */
 namespace nomad {
   typedef unsigned int ComponentInstance;

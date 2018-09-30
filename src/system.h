@@ -5,6 +5,12 @@
 #include "entity.h"
 #include "componentMask.h"
 
+/*
+ * Systems are where the bulk of the game interaction code goes. Read more here:
+ *
+ * https://medium.com/@savas/nomad-game-engine-part-3-the-big-picture-743cec145685
+ * https://medium.com/@savas/nomad-game-engine-part-5-systems-b7e86b572d7b
+ */
 namespace nomad {
   class World;
 
@@ -25,8 +31,21 @@ namespace nomad {
        */
       virtual void render() {};
 
+      /*
+       * When a system is added to the world, the world will register itself
+       */
       void registerWorld(World * world);
+
+      /*
+       * When a component is added such that this system should begin acting on it,
+       * register will be called.
+       */
       void registerEntity(Entity & entity);
+
+      /*
+       * If a component is removed from an entity such that the system should stop
+       * acting on it, unRegister will be called.
+       */
       void unRegisterEntity(Entity &entity);
       ComponentMask getSignature();
     protected:

@@ -3,19 +3,28 @@
 #include "entity.h"
 #include "componentManager.h"
 /*
-  This is the base implementation of a component.
+  This is the base implementation of a component. To create your own component:
+
+  struct Position : Component {
+    int x;
+    int y;
+  }
+
+  What is a component?
+  https://medium.com/@savas/nomad-game-engine-part-2-ecs-9132829188e5
+
+  What is a component family?
   https://medium.com/@savas/nomad-game-engine-part-6-the-world-303d305f55cb
-  https://medium.com/@savas/nomad-game-engine-part-4-2-adding-handles-8d299d80c7d0
 */
 namespace nomad {
   struct ComponentCounter {
-    static int counter;
+    static int familyCounter;
   };
 
   template<typename ComponentType>
   struct Component {
     static inline int family() {
-      static int family = ComponentCounter::counter++;
+      static int family = ComponentCounter::familyCounter++;
       return family;
     }
   };

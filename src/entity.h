@@ -1,8 +1,11 @@
 #pragma once
 
+/*
+ * An entity is just an id. For a more detailed explanation read:
+ * https://medium.com/@savas/nomad-game-engine-part-2-ecs-9132829188e5
+ */
 namespace nomad {
   class World;
-  template<typename ComponentType> struct ComponentHandle;
   struct Entity {
     int id;
 

@@ -2,24 +2,41 @@
 #include "entity.h"
 #include "componentManager.h"
 
+/*
+ * This is the implementation for a component handle. With this implementation, a
+ * component handle is only valid for the update that it is fetched on. Holding on
+ * to a handle will cause bugs.
+ *
+ * What is a handle?
+ * https://medium.com/@savas/nomad-game-engine-part-4-2-adding-handles-8d299d80c7d0
+ *
+ * How do I use a component handle?
+ *
+ * There are two ways to access a component using the handle. Access members of the
+ * component using the arrow operator:
+ *
+ * PositionHandle handle;
+ * handle->x++;
+ *
+ */
 namespace nomad {
-  /*
-   * A handle is only valid for this update. Don't hold on to handles anywhere.
-   */
   template<typename ComponentType>
   struct ComponentHandle {
-    ComponentHandle() {}
-    ComponentHandle(Entity owner, typename ComponentManager<ComponentType>::LookupType * component, ComponentManager<ComponentType> * manager) {
+    typedef typename ComponentManager<ComponentType>::LookupType ExposedComponentType;
+    Entity owner;
+    ExposedComponentType * component;
+    ComponentManager<ComponentType> * manager;
+
+    // Empty constructor used for World::unpack()
+    ComponentHandle() {};
+    ComponentHandle(Entity owner, ExposedComponentType * component, ComponentManager<ComponentType> * manager) {
       this->owner = owner;
       this->component = component;
       this->manager = manager;
     }
-    Entity owner;
-    typename ComponentManager<ComponentType>::LookupType * component;
-    ComponentManager<ComponentType> * manager;
 
     // handle->member is the same as handle.component->member
-    typename ComponentManager<ComponentType>::LookupType * operator->() const {
+    ExposedComponentType * operator->() const {
       return component;
     }
 

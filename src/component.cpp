@@ -1,5 +1,5 @@
 #include "component.h"
 
 namespace nomad {
-  int ComponentCounter::counter = 0;
+  int ComponentCounter::familyCounter = 0;
 }
