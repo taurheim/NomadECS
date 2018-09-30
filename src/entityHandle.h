@@ -27,7 +27,7 @@ namespace nomad {
 
     template<typename ComponentType>
     void removeComponent() {
-      world->removeComponent(entity);
+      world->removeComponent<ComponentType>(entity);
     }
 
     template<typename ComponentType>
