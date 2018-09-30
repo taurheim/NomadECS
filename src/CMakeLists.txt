@@ -3,7 +3,7 @@ project(nomadecs CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_library(nomad
+add_library(nomadecs
 	component.cpp
 	entity.h
 	componentManager.h
