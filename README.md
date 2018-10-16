@@ -14,6 +14,7 @@ Try building the example project by following instructions in the `example/` fol
 ## Disclaimer
 This repository is still a work in progress. Among the things still left to be done are:
 - Fix memory ownership and add destructors
+- Add unit tests
 - Add component garbage collection (+ Blog post)
 - Write demo game (+ Blog post)
 - Support multiple worlds (+ Blog post)
