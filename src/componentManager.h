@@ -1,5 +1,6 @@
 #pragma once
 #include "entity.h"
+#include "entityMap.h"
 #include <array>
 #include <map>
 
@@ -20,8 +21,6 @@
  *
  */
 namespace nomad {
-  typedef unsigned int ComponentInstance;
-
   template<typename ComponentType>
   struct ComponentData {
     unsigned int size = 1;
@@ -39,7 +38,7 @@ namespace nomad {
       ComponentInstance addComponent(Entity entity, ComponentType & component) {
         ComponentInstance newInstance = componentData.size;
         componentData.data->at(newInstance) = component;
-        entityMap[entity] = newInstance;
+        entityMap.update(entity, newInstance);
         componentData.size++;
         return newInstance;
       }
@@ -48,17 +47,25 @@ namespace nomad {
         // TODO write a blog post about delayed garbage collection
         // For now, there's a bug with concurrency
         ComponentInstance instance = entityMap[entity];
-        componentData.data[instance] = componentData.data[componentData.size - 1];
-        entityMap.erase(entity);
+
+        // Move last component to the deleted position to maintain data coherence
+        ComponentInstance lastComponent = componentData.size - 1;
+        componentData.data[instance] = componentData.data[lastComponent];
+        Entity lastEntity = entityMap.getEntity(lastComponent);
+
+        // Update our map
+        entityMap.removeFromMap(entity);
+        entityMap.update(lastEntity, instance);
+
         componentData.size--;
       }
 
       LookupType * lookup(Entity entity) {
-        ComponentInstance instance = entityMap[entity];
+        ComponentInstance instance = entityMap.getInstance(entity);
         return &componentData.data->at(instance);
       }
     private:
       ComponentData<ComponentType> componentData;
-      std::map<Entity, ComponentInstance> entityMap;
+      EntityMap entityMap;
   };
 }

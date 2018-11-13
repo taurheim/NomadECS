@@ -12,7 +12,9 @@ The package is hosted on Bintray: https://bintray.com/taurheim/nomad/NomadECS:ta
 Try building the example project by following instructions in the `example/` folder
 
 ## Disclaimer
-This repository is still a work in progress. Among the things still left to be done are:
+This repository is still a work in progress - It's actually a simplified port of the more complex game engine I'm developing. This means that it might not cover every edge case or be the most performant in every scenario, instead it is primarily designed to show off ECS concepts and to accompany my blog posts at https://savas.ca/nomad.
+
+Among the things still left to be done in this repo are:
 - Fix memory ownership and add destructors
 - Add unit tests
 - Add component garbage collection (+ Blog post)
