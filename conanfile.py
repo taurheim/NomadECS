@@ -3,7 +3,7 @@ from conans import ConanFile, CMake, tools
 
 class NomadEcsConan(ConanFile):
     name = "NomadECS"
-    version = "0.0.2"
+    version = "0.0.3"
     license = "MIT"
     url = "https://github.com/taurheim/nomadecs"
     homepage = "https://savas.ca/nomad"

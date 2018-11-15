@@ -1,5 +1,7 @@
 #pragma once
 #include "entity.h"
+#include <map>
+#include <array>
 
 /*
  * Effectively a bidirectional map
@@ -11,7 +13,7 @@ namespace nomad {
 
   struct EntityMap {
     Entity getEntity(ComponentInstance instance) {
-      return instanceToEntity->at(instance);
+      return instanceToEntity[instance];
     }
 
     ComponentInstance getInstance(Entity entity) {
@@ -23,12 +25,12 @@ namespace nomad {
       instanceToEntity[instance] = entity;
     }
 
-    void remove(Entity entity, ComponentInstance instance) {
+    void remove(Entity entity) {
       entityToInstance.erase(entity);
     }
 
     std::map<Entity, ComponentInstance> entityToInstance;
     std::array<Entity, 1024> instanceToEntity;
-  }
+  };
 }
 

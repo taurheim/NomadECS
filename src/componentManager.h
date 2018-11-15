@@ -46,7 +46,7 @@ namespace nomad {
       void destroyComponent(Entity entity) {
         // TODO write a blog post about delayed garbage collection
         // For now, there's a bug with concurrency
-        ComponentInstance instance = entityMap[entity];
+        ComponentInstance instance = entityMap.getInstance(entity);
 
         // Move last component to the deleted position to maintain data coherence
         ComponentInstance lastComponent = componentData.size - 1;
@@ -54,7 +54,7 @@ namespace nomad {
         Entity lastEntity = entityMap.getEntity(lastComponent);
 
         // Update our map
-        entityMap.removeFromMap(entity);
+        entityMap.remove(entity);
         entityMap.update(lastEntity, instance);
 
         componentData.size--;
