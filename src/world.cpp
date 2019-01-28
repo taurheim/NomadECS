@@ -20,6 +20,12 @@ namespace nomad {
     }
   }
 
+  void World::render() {
+    for (auto & system : systems) {
+      system->render();
+    }
+  }
+
   EntityHandle World::createEntity() {
     return { entityManager->createEntity(), this };
   }

@@ -33,6 +33,10 @@ namespace nomad {
        * https://gafferongames.com/post/fix_your_timestep/
        */
       void update(int dt);
+      /*
+       * Render a frame.
+       */
+      void render();
       EntityHandle createEntity();
       void addSystem(System * system);
       void destroyEntity(Entity entity);

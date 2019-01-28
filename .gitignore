@@ -19,5 +19,6 @@ cmake-build-debug
 #CLion
 .idea
 
-# Example build
+# Build folders
 example/build
+build
