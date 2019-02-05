@@ -1,7 +1,9 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.6)
 project(nomadecs CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+# Include custom cmake rules
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+include(../cmake/clang-cxx-dev-tools.cmake)
 
 add_library(nomadecs
 	component.cpp

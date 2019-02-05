@@ -1,7 +1,7 @@
 #pragma once
 #include "entity.h"
-#include <map>
 #include <array>
+#include <map>
 
 /*
  * Effectively a bidirectional map
@@ -9,28 +9,25 @@
  */
 
 namespace nomad {
-  typedef unsigned int ComponentInstance;
+typedef unsigned int ComponentInstance;
 
-  struct EntityMap {
-    Entity getEntity(ComponentInstance instance) {
-      return instanceToEntity[instance];
-    }
+struct EntityMap {
+  Entity getEntity(ComponentInstance instance) {
+    return instanceToEntity[instance];
+  }
 
-    ComponentInstance getInstance(Entity entity) {
-      return entityToInstance[entity];
-    }
+  ComponentInstance getInstance(Entity entity) {
+    return entityToInstance[entity];
+  }
 
-    void update(Entity entity, ComponentInstance instance) {
-      entityToInstance[entity] = instance;
-      instanceToEntity[instance] = entity;
-    }
+  void update(Entity entity, ComponentInstance instance) {
+    entityToInstance[entity] = instance;
+    instanceToEntity[instance] = entity;
+  }
 
-    void remove(Entity entity) {
-      entityToInstance.erase(entity);
-    }
+  void remove(Entity entity) { entityToInstance.erase(entity); }
 
-    std::map<Entity, ComponentInstance> entityToInstance;
-    std::array<Entity, 1024> instanceToEntity;
-  };
-}
-
+  std::map<Entity, ComponentInstance> entityToInstance;
+  std::array<Entity, 1024> instanceToEntity;
+};
+} // namespace nomad
