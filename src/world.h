@@ -21,7 +21,7 @@ namespace nomad {
 struct EntityHandle;
 class World {
 public:
-  World(EntityManager *entityManager);
+  explicit World(EntityManager *entityManager);
 
   /*
    * Should be called before the first update, but after instantiation
@@ -55,7 +55,7 @@ public:
   }
 
   template <typename ComponentType>
-  void addComponent(Entity &entity, ComponentType &&component) {
+  void addComponent(Entity const &entity, ComponentType &&component) {
     ComponentManager<ComponentType> *manager =
         getComponentManager<ComponentType>();
     manager->addComponent(entity, component);
@@ -66,7 +66,7 @@ public:
     updateEntityMask(entity, oldMask);
   }
 
-  template <typename ComponentType> void removeComponent(Entity &entity) {
+  template <typename ComponentType> void removeComponent(Entity const &entity) {
     ComponentManager<ComponentType> *manager =
         getComponentManager<ComponentType>();
     ComponentHandle<ComponentType> component = manager->lookup(entity);
@@ -103,12 +103,13 @@ private:
   std::vector<void *> componentManagers;
   std::map<Entity, ComponentMask> entityMasks;
 
-  void updateEntityMask(Entity &entity, ComponentMask oldMask);
+  void updateEntityMask(Entity const &entity, ComponentMask oldMask);
 
   template <typename ComponentType>
   ComponentManager<ComponentType> *getComponentManager() {
     // Need to make sure we actually have a component manager.
-    // TODO this is a performance hit every time we add and remove a component
+    // TODO(taurheim) this is a performance hit every time we add and remove a
+    // component
     int family = GetComponentFamily<ComponentType>();
 
     if (family >= componentManagers.size()) {

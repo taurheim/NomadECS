@@ -42,7 +42,7 @@ void World::addSystem(nomad::System *system) {
   systems.push_back(system);
 }
 
-void World::updateEntityMask(nomad::Entity &entity,
+void World::updateEntityMask(nomad::Entity const &entity,
                              nomad::ComponentMask oldMask) {
   ComponentMask newMask = entityMasks[entity];
 

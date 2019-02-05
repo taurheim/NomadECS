@@ -21,8 +21,9 @@
  */
 namespace nomad {
 template <typename ComponentType> struct ComponentHandle {
-  typedef
-      typename ComponentManager<ComponentType>::LookupType ExposedComponentType;
+  using ExposedComponentType =
+      typename ComponentManager<ComponentType>::LookupType;
+
   Entity owner;
   ExposedComponentType *component;
   ComponentManager<ComponentType> *manager;

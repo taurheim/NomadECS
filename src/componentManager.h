@@ -24,12 +24,12 @@
 namespace nomad {
 template <typename ComponentType> struct ComponentData {
   unsigned int size = 1;
-  std::array<ComponentType, 1024> *data;
+  std::array<ComponentType, MAX_NUMBER_OF_COMPONENTS> *data;
 };
 
 template <typename ComponentType> class ComponentManager {
 public:
-  typedef ComponentType LookupType;
+  using LookupType = ComponentType;
 
   ComponentManager() {
     componentData.data = static_cast<std::array<ComponentType, 1024> *>(
@@ -44,7 +44,7 @@ public:
   }
 
   void destroyComponent(Entity entity) {
-    // TODO write a blog post about delayed garbage collection
+    // TODO(taurheim) write a blog post about delayed garbage collection
     // For now, there's a bug with concurrency
     ComponentInstance instance = entityMap.getInstance(entity);
 

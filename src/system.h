@@ -40,16 +40,16 @@ public:
    * When a component is added such that this system should begin acting on it,
    * register will be called.
    */
-  void registerEntity(Entity &entity);
+  void registerEntity(Entity const &entity);
 
   /*
    * If a component is removed from an entity such that the system should stop
    * acting on it, unRegister will be called.
    */
-  void unRegisterEntity(Entity &entity);
+  void unRegisterEntity(Entity const &entity);
   ComponentMask getSignature();
 
-protected:
+private:
   std::vector<Entity> registeredEntities;
   World *parentWorld;
   ComponentMask signature;

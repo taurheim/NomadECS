@@ -9,25 +9,26 @@
  */
 
 namespace nomad {
-typedef unsigned int ComponentInstance;
+const int MAX_NUMBER_OF_COMPONENTS = 1024;
+using ComponentInstance = unsigned int;
 
 struct EntityMap {
   Entity getEntity(ComponentInstance instance) {
-    return instanceToEntity[instance];
+    return instanceToEntity.at(instance);
   }
 
   ComponentInstance getInstance(Entity entity) {
-    return entityToInstance[entity];
+    return entityToInstance.at(entity);
   }
 
   void update(Entity entity, ComponentInstance instance) {
-    entityToInstance[entity] = instance;
-    instanceToEntity[instance] = entity;
+    entityToInstance.at(entity) = instance;
+    instanceToEntity.at(instance) = entity;
   }
 
   void remove(Entity entity) { entityToInstance.erase(entity); }
 
   std::map<Entity, ComponentInstance> entityToInstance;
-  std::array<Entity, 1024> instanceToEntity;
+  std::array<Entity, MAX_NUMBER_OF_COMPONENTS> instanceToEntity;
 };
 } // namespace nomad
