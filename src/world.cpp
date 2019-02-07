@@ -3,8 +3,8 @@
 #include <iostream>
 
 namespace nomad {
-World::World(nomad::EntityManager *entityManager)
-    : entityManager(entityManager) {}
+World::World(std::unique_ptr<EntityManager> entityManager)
+    : entityManager(std::move(entityManager)) {}
 
 void World::init() {
   for (auto &system : systems) {
@@ -37,9 +37,9 @@ void World::destroyEntity(nomad::Entity entity) {
   entityManager->destroy(entity);
 }
 
-void World::addSystem(nomad::System *system) {
+void World::addSystem(std::unique_ptr<nomad::System> system) {
   system->registerWorld(this);
-  systems.push_back(system);
+  systems.push_back(std::move(system));
 }
 
 void World::updateEntityMask(nomad::Entity const &entity,

@@ -21,7 +21,7 @@ namespace nomad {
 struct EntityHandle;
 class World {
 public:
-  explicit World(EntityManager *entityManager);
+  explicit World(std::unique_ptr<EntityManager> entityManager);
 
   /*
    * Should be called before the first update, but after instantiation
@@ -38,7 +38,7 @@ public:
    */
   void render();
   EntityHandle createEntity();
-  void addSystem(System *system);
+  void addSystem(std::unique_ptr<System> system);
   void destroyEntity(Entity entity);
 
   /*
@@ -46,7 +46,7 @@ public:
    * TODO write blog post on bridge component managers
    */
   template <typename ComponentType>
-  void addCustomComponentManager(ComponentManager<ComponentType> *manager) {
+  void addCustomComponentManager(std::unique_ptr<ComponentManager<ComponentType>> manager) {
     int family = GetComponentFamily<ComponentType>();
     if (family >= componentManagers.size()) {
       componentManagers.resize(family + 1);
@@ -98,9 +98,9 @@ public:
   }
 
 private:
-  EntityManager *entityManager;
-  std::vector<System *> systems;
-  std::vector<void *> componentManagers;
+  std::unique_ptr<EntityManager> entityManager;
+  std::vector<std::unique_ptr<System>> systems;
+  std::vector<std::unique_ptr<BaseComponentManager>> componentManagers;
   std::map<Entity, ComponentMask> entityMasks;
 
   void updateEntityMask(Entity const &entity, ComponentMask oldMask);
