@@ -1,9 +1,9 @@
 #pragma once
 
-#include "componentMask.h"
-#include "entity.h"
 #include <bitset>
 #include <vector>
+#include "componentMask.h"
+#include "entity.h"
 
 /*
  * Systems are where the bulk of the game interaction code goes. Read more here:
@@ -15,7 +15,7 @@ namespace nomad {
 class World;
 
 class System {
-public:
+ public:
   /*
    * Called before the game starts but after the world initializes
    */
@@ -49,9 +49,9 @@ public:
   void unRegisterEntity(Entity const &entity);
   ComponentMask getSignature();
 
-private:
+ private:
   std::vector<Entity> registeredEntities;
   World *parentWorld;
   ComponentMask signature;
 };
-} // namespace nomad
+}  // namespace nomad

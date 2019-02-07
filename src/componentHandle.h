@@ -20,9 +20,9 @@
  *
  */
 namespace nomad {
-template <typename ComponentType> struct ComponentHandle {
-  using ExposedComponentType =
-      typename ComponentManager<ComponentType>::LookupType;
+template <typename ComponentType>
+struct ComponentHandle {
+  using ExposedComponentType = typename ComponentManager<ComponentType>::LookupType;
 
   Entity owner;
   ExposedComponentType *component;
@@ -30,8 +30,7 @@ template <typename ComponentType> struct ComponentHandle {
 
   // Empty constructor used for World::unpack()
   ComponentHandle(){};
-  ComponentHandle(Entity owner, ExposedComponentType *component,
-                  ComponentManager<ComponentType> *manager) {
+  ComponentHandle(Entity owner, ExposedComponentType *component, ComponentManager<ComponentType> *manager) {
     this->owner = owner;
     this->component = component;
     this->manager = manager;
@@ -42,4 +41,4 @@ template <typename ComponentType> struct ComponentHandle {
 
   void destroy() { manager->destroyComponent(owner); }
 };
-} // namespace nomad
+}  // namespace nomad

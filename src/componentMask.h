@@ -14,11 +14,13 @@ namespace nomad {
 struct ComponentMask {
   unsigned int mask = 0;
 
-  template <typename ComponentType> void addComponent() {
+  template <typename ComponentType>
+  void addComponent() {
     mask |= (1 << GetComponentFamily<ComponentType>());
   }
 
-  template <typename ComponentType> void removeComponent() {
+  template <typename ComponentType>
+  void removeComponent() {
     mask ^= (1 << GetComponentFamily<ComponentType>());
   }
 
@@ -28,4 +30,4 @@ struct ComponentMask {
 
   bool matches(ComponentMask systemMask);
 };
-} // namespace nomad
+}  // namespace nomad

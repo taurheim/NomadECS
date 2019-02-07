@@ -8,11 +8,11 @@
  */
 namespace nomad {
 class EntityManager {
-public:
+ public:
   Entity createEntity();
   void destroy(Entity entity);
 
-private:
+ private:
   int lastEntity = 0;
 };
-} // namespace nomad
+}  // namespace nomad

@@ -1,7 +1,7 @@
 #pragma once
-#include "entity.h"
 #include <array>
 #include <map>
+#include "entity.h"
 
 /*
  * Effectively a bidirectional map
@@ -13,13 +13,9 @@ const int MAX_NUMBER_OF_COMPONENTS = 1024;
 using ComponentInstance = unsigned int;
 
 struct EntityMap {
-  Entity getEntity(ComponentInstance instance) {
-    return instanceToEntity.at(instance);
-  }
+  Entity getEntity(ComponentInstance instance) { return instanceToEntity.at(instance); }
 
-  ComponentInstance getInstance(Entity entity) {
-    return entityToInstance.at(entity);
-  }
+  ComponentInstance getInstance(Entity entity) { return entityToInstance.at(entity); }
 
   void update(Entity entity, ComponentInstance instance) {
     entityToInstance.at(entity) = instance;
@@ -31,4 +27,4 @@ struct EntityMap {
   std::map<Entity, ComponentInstance> entityToInstance;
   std::array<Entity, MAX_NUMBER_OF_COMPONENTS> instanceToEntity;
 };
-} // namespace nomad
+}  // namespace nomad

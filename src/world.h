@@ -20,7 +20,7 @@
 namespace nomad {
 struct EntityHandle;
 class World {
-public:
+ public:
   explicit World(EntityManager *entityManager);
 
   /*
@@ -56,8 +56,7 @@ public:
 
   template <typename ComponentType>
   void addComponent(Entity const &entity, ComponentType &&component) {
-    ComponentManager<ComponentType> *manager =
-        getComponentManager<ComponentType>();
+    ComponentManager<ComponentType> *manager = getComponentManager<ComponentType>();
     manager->addComponent(entity, component);
 
     ComponentMask oldMask = entityMasks[entity];
@@ -66,9 +65,9 @@ public:
     updateEntityMask(entity, oldMask);
   }
 
-  template <typename ComponentType> void removeComponent(Entity const &entity) {
-    ComponentManager<ComponentType> *manager =
-        getComponentManager<ComponentType>();
+  template <typename ComponentType>
+  void removeComponent(Entity const &entity) {
+    ComponentManager<ComponentType> *manager = getComponentManager<ComponentType>();
     ComponentHandle<ComponentType> component = manager->lookup(entity);
     component.destroy();
 
@@ -79,8 +78,7 @@ public:
   }
 
   template <typename ComponentType, typename... Args>
-  void unpack(Entity e, ComponentHandle<ComponentType> &handle,
-              ComponentHandle<Args> &... args) {
+  void unpack(Entity e, ComponentHandle<ComponentType> &handle, ComponentHandle<Args> &... args) {
     typedef ComponentManager<ComponentType> ComponentManagerType;
     auto mgr = getComponentManager<ComponentType>();
     handle = ComponentHandle<ComponentType>(e, mgr->lookup(e), mgr);
@@ -97,7 +95,7 @@ public:
     handle = ComponentHandle<ComponentType>(e, mgr->lookup(e), mgr);
   }
 
-private:
+ private:
   EntityManager *entityManager;
   std::vector<System *> systems;
   std::vector<void *> componentManagers;
@@ -108,8 +106,7 @@ private:
   template <typename ComponentType>
   ComponentManager<ComponentType> *getComponentManager() {
     // Need to make sure we actually have a component manager.
-    // TODO(taurheim) this is a performance hit every time we add and remove a
-    // component
+    // TODO(taurheim) this is a performance hit every time we add and remove a component
     int family = GetComponentFamily<ComponentType>();
 
     if (family >= componentManagers.size()) {
@@ -120,8 +117,7 @@ private:
       componentManagers[family] = new ComponentManager<ComponentType>();
     }
 
-    return static_cast<ComponentManager<ComponentType> *>(
-        componentManagers[family]);
+    return static_cast<ComponentManager<ComponentType> *>(componentManagers[family]);
   }
 };
-} // namespace nomad
+}  // namespace nomad

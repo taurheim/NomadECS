@@ -2,4 +2,4 @@
 
 namespace nomad {
 int ComponentCounter::familyCounter = 0;
-} // namespace nomad
+}  // namespace nomad

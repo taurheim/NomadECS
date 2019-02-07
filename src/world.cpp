@@ -1,10 +1,9 @@
 #include "world.h"
-#include "entityHandle.h"
 #include <iostream>
+#include "entityHandle.h"
 
 namespace nomad {
-World::World(nomad::EntityManager *entityManager)
-    : entityManager(entityManager) {}
+World::World(nomad::EntityManager *entityManager) : entityManager(entityManager) {}
 
 void World::init() {
   for (auto &system : systems) {
@@ -25,9 +24,7 @@ void World::render() {
   }
 }
 
-EntityHandle World::createEntity() {
-  return {entityManager->createEntity(), this};
-}
+EntityHandle World::createEntity() { return {entityManager->createEntity(), this}; }
 
 void World::destroyEntity(nomad::Entity entity) {
   for (auto &system : systems) {
@@ -42,8 +39,7 @@ void World::addSystem(nomad::System *system) {
   systems.push_back(system);
 }
 
-void World::updateEntityMask(nomad::Entity const &entity,
-                             nomad::ComponentMask oldMask) {
+void World::updateEntityMask(nomad::Entity const &entity, nomad::ComponentMask oldMask) {
   ComponentMask newMask = entityMasks[entity];
 
   for (auto &system : systems) {
@@ -56,4 +52,4 @@ void World::updateEntityMask(nomad::Entity const &entity,
     }
   }
 }
-} // namespace nomad
+}  // namespace nomad

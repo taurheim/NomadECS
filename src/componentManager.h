@@ -1,8 +1,8 @@
 #pragma once
-#include "entity.h"
-#include "entityMap.h"
 #include <array>
 #include <map>
+#include "entity.h"
+#include "entityMap.h"
 
 /*
  * This is a generic component manager definition. It uses AoS storage for
@@ -22,18 +22,19 @@
  *
  */
 namespace nomad {
-template <typename ComponentType> struct ComponentData {
+template <typename ComponentType>
+struct ComponentData {
   unsigned int size = 1;
   std::array<ComponentType, MAX_NUMBER_OF_COMPONENTS> *data;
 };
 
-template <typename ComponentType> class ComponentManager {
-public:
+template <typename ComponentType>
+class ComponentManager {
+ public:
   using LookupType = ComponentType;
 
   ComponentManager() {
-    componentData.data = static_cast<std::array<ComponentType, 1024> *>(
-        malloc(sizeof(ComponentType) * 1024));
+    componentData.data = static_cast<std::array<ComponentType, 1024> *>(malloc(sizeof(ComponentType) * 1024));
   }
   ComponentInstance addComponent(Entity entity, ComponentType &component) {
     ComponentInstance newInstance = componentData.size;
@@ -65,8 +66,8 @@ public:
     return &componentData.data->at(instance);
   }
 
-private:
+ private:
   ComponentData<ComponentType> componentData;
   EntityMap entityMap;
 };
-} // namespace nomad
+}  // namespace nomad

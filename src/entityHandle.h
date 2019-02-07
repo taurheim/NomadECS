@@ -21,11 +21,11 @@ struct EntityHandle {
 
   template <typename ComponentType>
   void addComponent(ComponentType &&component) {
-    world->addComponent<ComponentType>(entity,
-                                       std::forward<ComponentType>(component));
+    world->addComponent<ComponentType>(entity, std::forward<ComponentType>(component));
   }
 
-  template <typename ComponentType> void removeComponent() {
+  template <typename ComponentType>
+  void removeComponent() {
     world->removeComponent<ComponentType>(entity);
   }
 
@@ -36,4 +36,4 @@ struct EntityHandle {
     return handle;
   }
 };
-} // namespace nomad
+}  // namespace nomad

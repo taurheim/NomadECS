@@ -1,7 +1,7 @@
 #pragma once
+#include <type_traits>
 #include "componentManager.h"
 #include "entity.h"
-#include <type_traits>
 /*
   This is the base implementation of a component. To create your own component:
 
@@ -21,7 +21,8 @@ struct ComponentCounter {
   static int familyCounter;
 };
 
-template <typename ComponentType> struct Component {
+template <typename ComponentType>
+struct Component {
   static inline int family() {
     static int family = ComponentCounter::familyCounter++;
     return family;
@@ -29,7 +30,8 @@ template <typename ComponentType> struct Component {
 };
 
 // Util method for getting family given type
-template <typename C> static int GetComponentFamily() {
+template <typename C>
+static int GetComponentFamily() {
   return Component<typename std::remove_const<C>::type>::family();
 }
-} // namespace nomad
+}  // namespace nomad
