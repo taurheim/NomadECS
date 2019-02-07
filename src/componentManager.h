@@ -28,8 +28,13 @@ struct ComponentData {
   std::array<ComponentType, MAX_NUMBER_OF_COMPONENTS> *data;
 };
 
+class BaseComponentManager {
+ public:
+  virtual ~BaseComponentManager() = default;
+};
+
 template <typename ComponentType>
-class ComponentManager {
+class ComponentManager : public BaseComponentManager {
  public:
   using LookupType = ComponentType;
 
