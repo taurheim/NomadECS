@@ -16,6 +16,12 @@ class World;
 
 class System {
  public:
+  virtual ~System() = default;
+  System(const System &) = default;
+  System &operator=(const System &) = default;
+  System(System &&) = default;
+  System &operator=(System &&) = default;
+
   /*
    * Called before the game starts but after the world initializes
    */

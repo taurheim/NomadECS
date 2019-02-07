@@ -26,7 +26,7 @@ if(CLANG_TIDY_EXE)
   add_custom_target(
     clang-tidy
     COMMAND ${CLANG_TIDY_EXE}
-	-checks "*,-llvm-header-guard,-google-build-using-namespace,-clang-analyzer-alpha.clone.CloneChecker,-google-runtime-int,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-clang-analyzer-alpha.deadcode.UnreachableCode,-misc-use-after-move,-cppcoreguidelines-pro-type-vararg,-modernize-use-emplace,-cert-err60-cpp,-fuchsia-overloaded-operator,-misc-non-private-member-variables-in-classes"
+	-checks "*,-llvm-header-guard,-google-build-using-namespace,-clang-analyzer-alpha.clone.CloneChecker,-google-runtime-int,-cppcoreguidelines-pro-bounds-array-to-pointer-decay,-clang-analyzer-alpha.deadcode.UnreachableCode,-misc-use-after-move,-cppcoreguidelines-pro-type-vararg,-modernize-use-emplace,-cert-err60-cpp,-fuchsia-overloaded-operator,-misc-non-private-member-variables-in-classes,-llvm-include-order"
 	-p "."
 	-header-filter=.*
     ${ALL_CXX_SOURCE_FILES}

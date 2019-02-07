@@ -31,6 +31,10 @@ struct ComponentData {
 class BaseComponentManager {
  public:
   virtual ~BaseComponentManager() = default;
+  BaseComponentManager(const BaseComponentManager &) = default;
+  BaseComponentManager &operator=(const BaseComponentManager &) = default;
+  BaseComponentManager(BaseComponentManager &&) = default;
+  BaseComponentManager &operator=(BaseComponentManager &&) = default;
 };
 
 template <typename ComponentType>
