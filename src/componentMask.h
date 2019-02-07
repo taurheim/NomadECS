@@ -21,7 +21,7 @@ struct ComponentMask {
 
   template <typename ComponentType>
   void removeComponent() {
-    mask ^= (1 << GetComponentFamily<ComponentType>());
+    mask &= ~(1 << GetComponentFamily<ComponentType>());
   }
 
   bool isNewMatch(ComponentMask oldMask, ComponentMask systemMask);
