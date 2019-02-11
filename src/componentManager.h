@@ -30,6 +30,7 @@ struct ComponentData {
 
 class BaseComponentManager {
  public:
+  BaseComponentManager() = default;
   virtual ~BaseComponentManager() = default;
   BaseComponentManager(const BaseComponentManager &) = default;
   BaseComponentManager &operator=(const BaseComponentManager &) = default;

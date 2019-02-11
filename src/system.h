@@ -16,6 +16,7 @@ class World;
 
 class System {
  public:
+  System() = default;
   virtual ~System() = default;
   System(const System &) = default;
   System &operator=(const System &) = default;
@@ -55,7 +56,7 @@ class System {
   void unRegisterEntity(Entity const &entity);
   ComponentMask getSignature();
 
- private:
+ protected:
   std::vector<Entity> registeredEntities;
   World *parentWorld;
   ComponentMask signature;

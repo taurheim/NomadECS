@@ -115,10 +115,10 @@ class World {
     }
 
     if (!componentManagers[family]) {
-      componentManagers[family] = new ComponentManager<ComponentType>();
+      componentManagers[family] = std::make_unique<ComponentManager<ComponentType>>();
     }
 
-    return static_cast<ComponentManager<ComponentType> *>(componentManagers[family]);
+    return static_cast<ComponentManager<ComponentType> *>(componentManagers[family].get());
   }
 };
 }  // namespace nomad

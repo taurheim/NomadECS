@@ -1,6 +1,8 @@
 project(NomadEcsExample)
-cmake_minimum_required(VERSION 2.8.12)
-add_definitions("-std=c++11")
+cmake_minimum_required(VERSION 3.6)
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 # Download automatically, you can also just copy the conan.cmake file
 if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
