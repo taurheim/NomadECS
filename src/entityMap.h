@@ -17,6 +17,12 @@ struct EntityMap {
 
   ComponentInstance getInstance(Entity entity) { return entityToInstance.at(entity); }
 
+  void add(Entity entity, ComponentInstance instance) {
+    // TODO (taurheim) Error when called on an entity already in the map
+    entityToInstance.insert({entity, instance});
+    instanceToEntity.at(instance) = entity;
+  }
+
   void update(Entity entity, ComponentInstance instance) {
     entityToInstance.at(entity) = instance;
     instanceToEntity.at(instance) = entity;

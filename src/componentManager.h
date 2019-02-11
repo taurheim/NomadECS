@@ -48,7 +48,7 @@ class ComponentManager : public BaseComponentManager {
   ComponentInstance addComponent(Entity entity, ComponentType &component) {
     ComponentInstance newInstance = componentData.size;
     componentData.data->at(newInstance) = component;
-    entityMap.update(entity, newInstance);
+    entityMap.add(entity, newInstance);
     componentData.size++;
     return newInstance;
   }
