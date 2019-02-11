@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "component.h"
 #include "componentHandle.h"
 #include "componentManager.h"
