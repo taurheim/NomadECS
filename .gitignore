@@ -10,11 +10,12 @@
 
 # Cmake stuff
 Makefile
-CMakeFiles/*
 cmake_install.cmake
 CMakeCache.txt
 install_manifest.txt
 cmake-build-debug
+src/CMakeFiles
+src/compile_commands.json
 
 #CLion
 .idea

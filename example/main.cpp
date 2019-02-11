@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "nomadecs/nomad.h"
 
 using namespace nomad;
@@ -8,7 +9,8 @@ struct Position : Component<Position> {
   float x;
 };
 
-struct Wind : System {
+class Wind : public System {
+public:
   Wind() {
     signature.addComponent<Position>();
   }
@@ -29,12 +31,12 @@ struct Wind : System {
 
 int main() {
   // Create the basic building blocks
-  auto entityManager = new EntityManager();
-  auto world = new World(entityManager);
+  auto entityManager = std::make_unique<EntityManager>();
+  auto world = std::make_unique<World>(std::move(entityManager));
 
   // Add systems
-  auto wind = new Wind();
-  world->addSystem(wind);
+  std::unique_ptr<System> wind = std::make_unique<Wind>();
+  world->addSystem(std::move(wind));
 
   // Initialize game
   world->init();

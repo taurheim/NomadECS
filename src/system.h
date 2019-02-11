@@ -2,8 +2,8 @@
 
 #include <bitset>
 #include <vector>
-#include "entity.h"
 #include "componentMask.h"
+#include "entity.h"
 
 /*
  * Systems are where the bulk of the game interaction code goes. Read more here:
@@ -12,45 +12,53 @@
  * https://medium.com/@savas/nomad-game-engine-part-5-systems-b7e86b572d7b
  */
 namespace nomad {
-  class World;
+class World;
 
-  class System {
-    public:
-      /*
-       * Called before the game starts but after the world initializes
-       */
-      virtual void init() {};
+class System {
+ public:
+  System() = default;
+  virtual ~System() = default;
+  System(const System &) = default;
+  System &operator=(const System &) = default;
+  System(System &&) = default;
+  System &operator=(System &&) = default;
 
-      /*
-       * Called every game update
-       */
-      virtual void update(int dt) {};
+  /*
+   * Called before the game starts but after the world initializes
+   */
+  virtual void init(){};
 
-      /*
-       * Called every frame
-       */
-      virtual void render() {};
+  /*
+   * Called every game update
+   */
+  virtual void update(int dt){};
 
-      /*
-       * When a system is added to the world, the world will register itself
-       */
-      void registerWorld(World * world);
+  /*
+   * Called every frame
+   */
+  virtual void render(){};
 
-      /*
-       * When a component is added such that this system should begin acting on it,
-       * register will be called.
-       */
-      void registerEntity(Entity & entity);
+  /*
+   * When a system is added to the world, the world will register itself
+   */
+  void registerWorld(World *world);
 
-      /*
-       * If a component is removed from an entity such that the system should stop
-       * acting on it, unRegister will be called.
-       */
-      void unRegisterEntity(Entity &entity);
-      ComponentMask getSignature();
-    protected:
-      std::vector<Entity> registeredEntities;
-      World * parentWorld;
-      ComponentMask signature;
-  };
-}
+  /*
+   * When a component is added such that this system should begin acting on it,
+   * register will be called.
+   */
+  void registerEntity(Entity const &entity);
+
+  /*
+   * If a component is removed from an entity such that the system should stop
+   * acting on it, unRegister will be called.
+   */
+  void unRegisterEntity(Entity const &entity);
+  ComponentMask getSignature();
+
+ protected:
+  std::vector<Entity> registeredEntities;
+  World *parentWorld;
+  ComponentMask signature;
+};
+}  // namespace nomad
