@@ -1,6 +1,6 @@
-#include "world.h"
+#include "nomadecs/world.h"
 #include <iostream>
-#include "entityHandle.h"
+#include "nomadecs/entityHandle.h"
 
 namespace nomad {
 World::World(std::unique_ptr<EntityManager> entityManager) : entityManager(std::move(entityManager)) {}

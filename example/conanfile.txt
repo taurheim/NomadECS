@@ -1,5 +1,0 @@
-[requires]
-NomadECS/0.0.5@taurheim/testing
-
-[generators]
-cmake

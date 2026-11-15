@@ -14,12 +14,11 @@ cmake_install.cmake
 CMakeCache.txt
 install_manifest.txt
 cmake-build-debug
-src/CMakeFiles
-src/compile_commands.json
+CMakeFiles
+compile_commands.json
 
 #CLion
 .idea
 
 # Build folders
-example/build
 build

@@ -1,4 +1,4 @@
-#include "entityManager.h"
+#include "nomadecs/entityManager.h"
 
 namespace nomad {
 Entity EntityManager::createEntity() {

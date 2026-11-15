@@ -1,5 +1,5 @@
 
-#include "system.h"
+#include "nomadecs/system.h"
 
 namespace nomad {
 void System::registerWorld(World *world) { parentWorld = world; }

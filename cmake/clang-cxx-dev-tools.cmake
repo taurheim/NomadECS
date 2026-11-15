@@ -2,10 +2,11 @@
 # Get all project files
 file(GLOB_RECURSE
      ALL_CXX_SOURCE_FILES
-     *.cpp)
+     ${PROJECT_SOURCE_DIR}/src/*.cpp
+     ${PROJECT_SOURCE_DIR}/example/*.cpp)
 file(GLOB_RECURSE
 	 ALL_CXX_HEADERS
-	 *.h)
+	 ${PROJECT_SOURCE_DIR}/include/*.h)
 
 # Adding clang-format target if executable is found
 find_program(CLANG_FORMAT_EXE "clang-format")

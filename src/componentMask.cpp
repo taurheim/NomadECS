@@ -1,5 +1,5 @@
-#include "componentMask.h"
-#include "nomad.h"
+#include "nomadecs/componentMask.h"
+#include "nomadecs/nomad.h"
 
 namespace nomad {
 bool ComponentMask::isNewMatch(nomad::ComponentMask oldMask, nomad::ComponentMask systemMask) {

@@ -1,4 +1,4 @@
-#include "component.h"
+#include "nomadecs/component.h"
 
 namespace nomad {
 int ComponentCounter::familyCounter = 0;
